@@ -1,0 +1,28 @@
+body {
+padding: 50px;
+font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+color: #00B7FF;
+}
+/*Ширина окна приложения составляет 800 пикселов, применено центрирование по горизонтали*/
+#content {
+width: 800px;
+margin-left: auto;
+margin-right: auto;
+}
+/* Css правила для области, в которой выводится название текущей комнаты*/
+#room {
+background-color: #ddd;
+margin-bottom: 1em;
+}
+/*Область вывода сообщений имеет 690 пикселов в ширину и 300 пикселов в высоту*/
+#messages {
+width: 690px;
+height: 300px;
+/* Обеспечивает прокрутку выводимых сообщений после заполнения соответствующей области*/
+overflow: auto;
+background-color: #eee;
+margin-bottom: 1em;
+margin-right: 10px;
+}
