@@ -3,7 +3,7 @@ var fs=require('fs');
 var path=require('path');
 var mime=require('mime');
 var cache={};
-var chatServer=require('./lib/chat_server');
+
 
 
 function send404(response) {
@@ -51,36 +51,10 @@ var server = http.createServer(function (request, response) {
 	serverStatic(response, cache, absPath);
 });
 
-chatServer.listen(server);
-
-
-
 
 server.listen(56322, function () {
 	console.log("server listening on port 56322 !");
 });
 
-
-
-exports.listen = function(server) {// Запуск Socket.IO-сервера, чтобы выполняться вместе с существующим HTTP-сервером
-	io = socketio.listen(server);
-	io.set('log level', 1);
-	// Определение способа обработки каждого пользовательского соединенияnickNames, namesUsed);
-	io.sockets.on('connection', function (socket) {
-		// Присваивание подключившемуся пользователю имени guest
-		guestNumber = assignGuestName(socket, guestNumber, nickNames, namesUsed);
-		// Помещение подключившегося пользователя в комнату Lobby
-		joinRoom(socket, 'Lobby');
-		// Обработка пользовательских сообщений, попыток изменения имени
-		handleMessageBroadcasting(socket, nickNames);
-		// и попыток создания/изменения комнат
-		handleNameChangeAttempts(socket, nickNames, namesUsed);
-		handleRoomJoining(socket);
-		// Вывод списка занятых комнат по запросу пользователя
-		socket.on('rooms', function() {
-			socket.emit('rooms', io.sockets.manager.rooms);
-			});
-		// Определение логики очистки, выполняемой после выхода пользователя из чата
-		handleClientDisconnection(socket, nickNames, namesUsed);
-	});
-};
+var chatServer=require('./lib/chat_server');
+chatServer.listen(server);
